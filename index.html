@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Delhi Restaurant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f3ef;
+      --card: #fff;
+      --text: #161616;
+      --muted: #45576b;
+      --accent: #e63931;
+      --accent-dark: #b3221e;
+      --pill: #0f7a5d;
+      --shadow: 0 12px 30px rgba(0,0,0,0.08);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Manrope", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at 20% 20%, #fff8f4 0 28%, transparent 30%), radial-gradient(circle at 80% 0%, #f1f7ff 0 26%, transparent 28%), var(--bg);
+      min-height: 100vh;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 6vw;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Playfair Display", serif;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 22px;
+      text-transform: uppercase;
+    }
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 15px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #5b5b5b;
+      padding: 8px 12px;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+    }
+    nav a:hover, nav a.active {
+      color: var(--text);
+      background: #f1f1f1;
+    }
+    .cta-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .icon-pill {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.08);
+      display: grid;
+      place-items: center;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      font-weight: 700;
+      color: var(--text);
+    }
+    .hero {
+      padding: 80px 6vw 60px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-content h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(40px, 4vw, 56px);
+      margin: 0 0 14px;
+      line-height: 1.05;
+    }
+    .hero-content p {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.6;
+      margin: 0 0 24px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: #eef8f4;
+      color: var(--pill);
+      border-radius: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 18px;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      border: none;
+      border-radius: 12px;
+      padding: 14px 22px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+    .btn-secondary {
+      background: #0f0f0f;
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+    .hero-visual {
+      position: relative;
+      min-height: 320px;
+    }
+    .hero-card {
+      background: var(--card);
+      padding: 26px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      position: absolute;
+      top: 40px;
+      right: 10%;
+      width: min(420px, 90%);
+    }
+    .hero-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+    .hero-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .features {
+      padding: 20px 6vw 80px;
+    }
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
+      margin: 0 0 18px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 18px;
+      border: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+      display: grid;
+      gap: 10px;
+    }
+    .card h4 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0.2px;
+    }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+    footer {
+      padding: 40px 6vw 60px;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    footer strong { color: var(--text); }
+    @media (max-width: 960px) {
+      header { flex-wrap: wrap; gap: 12px; }
+      nav { width: 100%; justify-content: center; flex-wrap: wrap; }
+      .hero { grid-template-columns: 1fr; padding-top: 50px; }
+      .hero-visual { order: -1; }
+      .hero-card { position: relative; top: 0; right: 0; width: 100%; }
+    }
+    @media (max-width: 720px) {
+      header { padding: 14px 5vw; }
+      nav { gap: 10px; overflow-x: auto; justify-content: flex-start; }
+      .hero { padding: 36px 5vw 40px; gap: 28px; }
+      .hero-content h1 { font-size: clamp(32px, 8vw, 44px); }
+      .hero-content p { font-size: 16px; }
+      .cta-buttons { flex-direction: column; }
+      .btn { width: 100%; text-align: center; }
+      .features { padding: 10px 5vw 60px; }
+      .grid { gap: 12px; }
+      footer { padding: 28px 5vw 50px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">New Delhi</div>
+    <nav>
+      <a href="#" class="active">Home</a>
+      <a href="#">Menu</a>
+      <a href="#">Our Story</a>
+      <a href="#">Gallery</a>
+      <a href="#">Locations</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="cta-group">
+      <div class="icon-pill">EN</div>
+      <div class="icon-pill">⋯</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="badge">Grand Reopening • 16 Oct</div>
+      <h1>Discover the Soul of Indian Cuisine</h1>
+      <p>From tandoor-fired breads to aromatic curries, experience bold flavors and warm hospitality crafted in the heart of the city.</p>
+      <div class="cta-buttons">
+        <button class="btn btn-primary">Online Order</button>
+        <button class="btn btn-secondary">Reserve Table</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <h3>Restaurant will open on 16 Oct</h3>
+        <p>Save the date for our refreshed space, new chef specials, and an elevated dining journey inspired by Old Delhi's timeless kitchens.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Why Dine With Us</h2>
+    <div class="grid">
+      <div class="card">
+        <h4>Authentic Spices</h4>
+        <p>Hand-ground masalas bring depth and aroma to every dish.</p>
+      </div>
+      <div class="card">
+        <h4>Chef's Specials</h4>
+        <p>Rotating creations inspired by regional classics.</p>
+      </div>
+      <div class="card">
+        <h4>Farm-fresh</h4>
+        <p>Seasonal produce from local partners.</p>
+      </div>
+      <div class="card">
+        <h4>Warm Hospitality</h4>
+        <p>Service rooted in Delhi's tradition of generous hosting.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div><strong>New Delhi Restaurant</strong> — Aromatic curries, tandoor-fired breads, and modern classics.</div>
+    <div>Open daily · Reservations recommended · <strong>Reopening 16 Oct</strong></div>
+  </footer>
+</body>
+</html>
